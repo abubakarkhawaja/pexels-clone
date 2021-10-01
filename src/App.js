@@ -1,22 +1,23 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-require('dotenv').config('./.env');
+import Banner from './components/Banner';
+import NavBar from './components/NavBar';
+import Search from './components/Search';
+import Table from './components/Table';
 
 function App() {
   return (
     <div className='App'>
-      <header className='App-header'>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Learn React + key= {process.env['REACT_APP_API_KEY']}
-        </a>
-      </header>
+      <Router>
+        <NavBar />
+        <Switch>
+          <Route path='/' exact>
+            <Banner />
+            <Table />
+          </Route>
+          <Route path='/search' component={Search} />
+        </Switch>
+      </Router>
     </div>
   );
 }
