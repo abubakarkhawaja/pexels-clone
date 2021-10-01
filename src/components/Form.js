@@ -11,8 +11,7 @@ function Form() {
     const query = input.current.value;
     input.current.value = '';
     history.push({
-      pathname: `/search`,
-      search: `?query=${query}`,
+      pathname: `/search?query=${query}`,
     });
   }
 

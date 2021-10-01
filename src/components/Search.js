@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Table.css';
+import Table from './Table';
 
 export default function Search({ match }) {
   const [items, setItems] = useState([]);
@@ -17,7 +17,6 @@ export default function Search({ match }) {
         }),
       }
     ).then((response) => {
-      console.log('Response:', response.ok);
       if (response.ok) {
         return response.json();
       }
@@ -25,21 +24,5 @@ export default function Search({ match }) {
     if (searchResponse !== undefined) setItems(searchResponse.photos);
   }
 
-  return (
-    <div className='items'>
-      <label>SEARCH</label>
-      <table className='table__items'>
-        {items.map((img) => {
-          return (
-            <img
-              className='image'
-              key={`${img.id}`}
-              src={`${img.src.portrait}`}
-              alt={`${img.id}`}
-            />
-          );
-        })}
-      </table>
-    </div>
-  );
+  return <Table items={items} label='Search Results' />;
 }

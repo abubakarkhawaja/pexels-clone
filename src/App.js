@@ -3,7 +3,7 @@ import './App.css';
 import Banner from './components/Banner';
 import NavBar from './components/NavBar';
 import Search from './components/Search';
-import Table from './components/Table';
+import Home from './components/Home';
 
 function App() {
   return (
@@ -13,9 +13,9 @@ function App() {
         <Switch>
           <Route path='/' exact>
             <Banner />
-            <Table />
+            <Home />
           </Route>
-          <Route path='/search' component={Search} />
+          <Route path='/search?query=:query' component={Search} />
         </Switch>
       </Router>
     </div>
