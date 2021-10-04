@@ -2,9 +2,14 @@
   margin: 30px 40px;
   display: flex;
   justify-content: space-between;
+  align-content: center;
 }
-
+.interactions {
+  display: flex;
+}
 button {
+  align-items: center;
+  display: inline-flex;
   margin: 0 5px;
   border: none;
   border-radius: 5px;
