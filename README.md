@@ -69,3 +69,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 - react-router-dom
   To assign routes to components. Also helps building single page application without page refreshing.
+
+- file-saver
+  To download files from url.

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Table.css';
 
 export default function Table({ items, label }) {
@@ -8,12 +9,14 @@ export default function Table({ items, label }) {
         {items &&
           items.map((img) => {
             return (
-              <img
-                className='image'
-                key={`${img.id}`}
-                src={`${img.src.portrait}`}
-                alt={`${img.id}`}
-              />
+              <Link to={`/photo/${img.id}`} key={img.id}>
+                <img
+                  className='image'
+                  key={img.id}
+                  src={img.src.portrait}
+                  alt={img.id}
+                />
+              </Link>
             );
           })}
       </div>

@@ -1,26 +1,29 @@
-.form {
-  max-width: 600px;
-}
 .search-bar__container {
-  display: flex;
-  border: none;
-  border-radius: 6px;
-  z-index: 1;
-  height: 57px;
-  width: 160%;
+  max-width: 300px;
+  width: 100%;
+  position: relative;
 }
 
 .search-bar__container button {
+  position: absolute;
+  border-radius: 5px;
+  right: -5px;
+  z-index: 2;
   border: none;
-  background: white;
+  top: -2px;
+  height: 30px;
   cursor: pointer;
-  margin-left: -50px;
+  color: transparent;
+  background: transparent;
 }
 
-input[type='text'] {
-  border-radius: 3px;
-  border: 1px solid #e8e8e8;
+.search-bar__container input[type='text'] {
+  left: 5px;
   width: 100%;
+  outline: none;
+  height: 30px;
+  border-radius: 5px;
   font-weight: 300;
   font-size: 17px;
+  text-align: start;
 }
