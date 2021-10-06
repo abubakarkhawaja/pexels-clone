@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
+import ReactPlayer from 'react-player';
 import './Table.css';
 
-export default function Table({ items, label }) {
-  return (
-    <div className='items'>
-      <label>{label}</label>
-      <div className='items_grid'>
+export default function Table({ items, label, activePhotoBar }) {
+  function showPhotos() {
+    return (
+      <div className='image-wrapper'>
         {items &&
           items.map((img) => {
             return (
@@ -20,6 +20,35 @@ export default function Table({ items, label }) {
             );
           })}
       </div>
-    </div>
+    );
+  }
+
+  function showVideos() {
+    return (
+      <div className='player-wrapper'>
+        {items &&
+          items.map((video) => {
+            return (
+              <Link to={`/video/${video.id}`} key={video.id}>
+                <ReactPlayer
+                  className='react-player'
+                  key={video.id}
+                  url={video.video_files[1].link}
+                  playing
+                  muted
+                />
+              </Link>
+            );
+          })}
+      </div>
+    );
+  }
+  return (
+    <>
+      <div className='items'>
+        <label>{label}</label>
+        {activePhotoBar ? showPhotos() : showVideos()}
+      </div>
+    </>
   );
 }

@@ -2,6 +2,32 @@
   margin: 40px 10px;
 }
 
+.tabs {
+  min-width: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 8%);
+}
+a {
+  color: white;
+}
+
+a.underlined-tabs__tab {
+  margin: 20px 0;
+  padding: 0 20px;
+  font-weight: bold;
+  position: relative;
+  font-size: 17px;
+  line-height: 26px;
+  font-weight: 600;
+  color: black;
+}
+
+.underlined-tabs__tab.active {
+  color: #0064f9;
+}
+
 .image {
   object-fit: contain;
   max-height: 600px;
