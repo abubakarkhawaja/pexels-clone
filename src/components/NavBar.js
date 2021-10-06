@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <div className={`nav`}>
+    <nav className={`nav`}>
       <div className='nav__logo'>
         <Link to='/' className='nav__logo__link'>
           <div className='nav__logo__img'>
@@ -32,7 +32,7 @@ function NavBar() {
       </div>
 
       <p className='nav__content'>Login</p>
-    </div>
+    </nav>
   );
 }
 

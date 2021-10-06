@@ -1,42 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { saveAs } from 'file-saver';
+import { useFetchPhoto } from '../useFetch';
+import { BASE_IMAGE_URL } from '../config';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementAction, decrementAction } from '../redux/action/counter';
 import './PhotoView.css';
 
 function PhotoView({ match }) {
-  const [photo, setPhoto] = useState({ src: '' });
+  const { photo } = useFetchPhoto({
+    url: `${BASE_IMAGE_URL}${match.params.id}`,
+  });
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counterReducer.counter);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  async function getData() {
-    const response = await fetch(
-      `https://api.pexels.com/v1/photos/${match.params.id}`,
-      {
-        headers: new Headers({
-          Authorization: process.env.REACT_APP_API_KEY,
-        }),
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error component: Photo View');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    if (response !== undefined) {
-      setPhoto(response);
-      return response;
-    }
-  }
 
   return (
     <>

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { BASE_URL } from '../config';
+import { useFetch } from '../useFetch';
 import Table from './Table';
 
 export default function Home({ activePhotoBar }) {
+  const { items, loadMore, hasNextPage } = useFetch({
+    url: `${BASE_URL}`,
+  });
+
   const [photos, setPhotos] = useState([]);
   const [videos, setVideos] = useState([]);
-  const [hasNextPage, setHasNextPage] = useState(false);
-  let [page, setPage] = useState(1);
-  let [perPage, setPerPage] = useState(
-    parseInt(process.env.REACT_APP_PER_PAGE)
-  );
-
   useEffect(() => {
     getData();
   }, [activePhotoBar, page, perPage]);
@@ -19,23 +19,8 @@ export default function Home({ activePhotoBar }) {
     const url = activePhotoBar
       ? `https://api.pexels.com/v1/curated`
       : 'https://api.pexels.com/videos/popular';
-
-    const curated = await fetch(url + `?page=${page}&per_page=${perPage}`, {
-      headers: new Headers({
-        Authorization: process.env.REACT_APP_API_KEY,
-      }),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error component: Home');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
+    
+    
     if (curated !== undefined) {
       setHasNextPage(curated.next_page);
       if (activePhotoBar) {
@@ -54,10 +39,6 @@ export default function Home({ activePhotoBar }) {
         setVideos(curated.videos);
       }
     }
-  }
-
-  function loadMore() {
-    setPage(page + 1);
   }
 
   return (
