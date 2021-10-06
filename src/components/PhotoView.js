@@ -32,7 +32,6 @@ function PhotoView({ match }) {
       .catch((error) => {
         console.error(error);
       });
-    console.log('i ran');
     if (response !== undefined) {
       setPhoto(response);
       return response;
@@ -56,7 +55,7 @@ function PhotoView({ match }) {
             </svg>
             {counter} Like
           </button>
-          <button onClick={() => dispatch(decrementAction())}>
+          <button>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='24'
