@@ -1,28 +1,27 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
 import './Table.css';
 import { BASE_IMAGE_URL } from '../config';
 import { useFetch } from '../useFetch';
 
-export default function Table() {
-  const { items } = useFetch({
-    url: `${BASE_IMAGE_URL}?page=1&per_page=${process.env.REACT_APP_PER_PAGE}`,
-  });
-
+export default function Table({ items, label }) {
   return (
     <div className='items'>
-      <label>Trending</label>
-      <table className='table__items'>
-        {items.map((img) => {
-          return (
-            <img
-              className='image'
-              key={img.id}
-              src={img.src.portrait}
-              alt={img.id}
-            />
-          );
-        })}
-      </table>
+      <label>{label}</label>
+      <div className='items_grid'>
+        {items &&
+          items.map((img) => {
+            return (
+              <Link to={`/photo/${img.id}`} key={img.id}>
+                <img
+                  className='image'
+                  key={img.id}
+                  src={img.src.portrait}
+                  alt={img.id}
+                />
+              </Link>
+            );
+          })}
+      </div>
     </div>
   );
 }

@@ -20,7 +20,7 @@ function Form() {
       <div className='search-bar__container'>
         <input
           id='search'
-          placeholder='Search for free photos and videos'
+          placeholder='Search'
           required='required'
           type='text'
           ref={input}

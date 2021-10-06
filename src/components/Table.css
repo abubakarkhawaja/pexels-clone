@@ -1,11 +1,10 @@
+.items {
+  margin: 40px 10px;
+}
+
 .image {
   object-fit: contain;
   max-height: 600px;
   margin: 10px;
   border-radius: 10px;
-}
-
-.items {
-  text-align: center;
-  margin: 40px 0px;
 }
