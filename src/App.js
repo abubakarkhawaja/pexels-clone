@@ -14,7 +14,11 @@ function App() {
         <Switch>
           <Route path='/' exact>
             <Banner />
-            <Home />
+            <Home activePhotoBar={true} />
+          </Route>
+          <Route path='/videos' exact>
+            <Banner />
+            <Home activePhotoBar={false} />
           </Route>
           <Route path='/search?query=:query' component={Search} />
           <Route path='/photo/:id' component={PhotoView} />

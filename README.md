@@ -72,3 +72,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 - file-saver
   To download files from url.
+
+- react-player
+  To play videos from remote urls.
