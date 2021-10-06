@@ -1,0 +1,27 @@
+.form {
+  max-width: 600px;
+}
+.search-bar__container {
+  display: flex;
+  border: none;
+  border-radius: 6px;
+  z-index: 1;
+  height: 57px;
+  width: 160%;
+}
+
+.search-bar__container button {
+  border: none;
+  background: white;
+  cursor: pointer;
+  margin-left: -50px;
+}
+
+input[type='text'] {
+  border-radius: 3px;
+  border: 1px solid #e8e8e8;
+  width: 100%;
+  font-weight: 300;
+  font-size: 17px;
+  padding-left: 10px;
+}
