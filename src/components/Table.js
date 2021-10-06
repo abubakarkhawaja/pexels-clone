@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Table.css';
+import { BASE_IMAGE_URL } from '../config';
+import { useFetch } from '../useFetch';
 
 export default function Table({ items, label }) {
   return (
