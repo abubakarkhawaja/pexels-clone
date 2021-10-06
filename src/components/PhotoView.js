@@ -1,40 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { saveAs } from 'file-saver';
-
+import { useFetchPhoto } from '../useFetch';
+import { BASE_IMAGE_URL } from '../config';
 import './PhotoView.css';
 
 function PhotoView({ match }) {
-  const [photo, setPhoto] = useState({ src: '' });
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  async function getData() {
-    const response = await fetch(
-      `https://api.pexels.com/v1/photos/${match.params.id}`,
-      {
-        headers: new Headers({
-          Authorization: process.env.REACT_APP_API_KEY,
-        }),
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error component: Photo View');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    console.log('i ran');
-    if (response !== undefined) {
-      setPhoto(response);
-      return response;
-    }
-  }
+  const { photo } = useFetchPhoto({
+    url: `${BASE_IMAGE_URL}${match.params.id}`,
+  });
 
   return (
     <>

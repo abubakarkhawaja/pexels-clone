@@ -1,11 +1,11 @@
 import React from 'react';
 import './Banner.css';
-import { BASE_IMAGE_URL } from '../config';
+import { BASE_URL } from '../config';
 import { useFetchBanner } from '../useFetch';
 
 export default function Banner() {
   const { image } = useFetchBanner({
-    url: `${BASE_IMAGE_URL}?page=2&per_page=${process.env.REACT_APP_PER_PAGE}`,
+    url: `${BASE_URL}?page=2&per_page=${process.env.REACT_APP_PER_PAGE}`,
   });
 
   return (
