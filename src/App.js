@@ -15,7 +15,7 @@ function App() {
             <Banner />
             <Table />
           </Route>
-          <Route path='/search' component={Search} />
+          <Route path='/search?query=:query' component={Search} />
         </Switch>
       </Router>
     </div>

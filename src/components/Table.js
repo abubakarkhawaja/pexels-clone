@@ -1,32 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Table.css';
+import { BASE_IMAGE_URL } from '../config';
+import { useFetch } from '../useFetch';
 
 export default function Table() {
-  const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    getData();
+  const { items } = useFetch({
+    url: `${BASE_IMAGE_URL}?page=1&per_page=${process.env.REACT_APP_PER_PAGE}`,
   });
-
-  async function getData() {
-    const curated = await fetch(
-      `https://api.pexels.com/v1/curated?page=1&per_page=${process.env.REACT_APP_PER_PAGE}`,
-      {
-        headers: new Headers({
-          Authorization: process.env.REACT_APP_API_KEY,
-        }),
-      }
-    ).then((response) => {
-      console.log('Response:', response.ok);
-      if (response.ok) {
-        return response.json();
-      }
-    });
-
-    if (curated !== undefined) {
-      setItems(curated.photos);
-    }
-  }
 
   return (
     <div className='items'>
@@ -36,9 +16,9 @@ export default function Table() {
           return (
             <img
               className='image'
-              key={`${img.id}`}
-              src={`${img.src.portrait}`}
-              alt={`${img.id}`}
+              key={img.id}
+              src={img.src.portrait}
+              alt={img.id}
             />
           );
         })}
