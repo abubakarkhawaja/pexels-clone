@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import './Form.css';
+import '../style/Form.css';
 
 function Form() {
   const input = React.createRef();
@@ -11,7 +11,8 @@ function Form() {
     const query = input.current.value;
     input.current.value = '';
     history.push({
-      pathname: `/search?query=${query}`,
+      pathname: '/search',
+      search: `?query=${query}`,
     });
   }
 

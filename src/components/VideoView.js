@@ -1,22 +1,23 @@
 import React from 'react';
 import { saveAs } from 'file-saver';
+import ReactPlayer from 'react-player';
 import { useMedia } from '../hooks/useMedia';
-import { BASE_IMAGE_URL } from '../config';
+import { BASE_VIDEO_URL } from '../config';
 import { useDispatch, useSelector } from 'react-redux';
 import { incrementAction, decrementAction } from '../redux/action/counter';
 import '../style/PhotoView.css';
 
-function PhotoView({ match }) {
+function VideoView({ match }) {
   const dispatch = useDispatch();
   const counter = useSelector((state) => state.counterReducer.counter);
   const { media } = useMedia({
-    url: `${BASE_IMAGE_URL}${match.params.id}`,
+    url: `${BASE_VIDEO_URL}${match.params.id}`,
   });
 
   return (
     <>
       <div className='header'>
-        <div className='photographer'>{media && media.photographer}</div>
+        <div className='photographer'>{media && media.user.name}</div>
 
         <div className='interactions'>
           <button onClick={() => dispatch(incrementAction())}>
@@ -44,18 +45,28 @@ function PhotoView({ match }) {
 
           <button
             onClick={() => {
-              saveAs(media.src.original, media.id);
+              saveAs(media.video_files[1].link, media.id);
             }}
           >
             Download
           </button>
         </div>
       </div>
-      {media && (
-        <img className='image-view' src={media.src.landscape} alt={media.id} />
-      )}
+      <div className='player-wrapper'>
+        {media && (
+          <ReactPlayer
+            className='react-player'
+            key={media.id}
+            url={media.video_files[1].link}
+            playing
+            muted
+            width='60%'
+            height='65%'
+          />
+        )}
+      </div>
     </>
   );
 }
 
-export default PhotoView;
+export default VideoView;

@@ -7,6 +7,7 @@
 .interactions {
   display: flex;
 }
+
 button {
   align-items: center;
   display: inline-flex;
@@ -22,4 +23,13 @@ button {
 .image-view {
   object-fit: contain;
   padding: 20px;
+}
+
+.player-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.react-player {
+  margin: 20px;
 }

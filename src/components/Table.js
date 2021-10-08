@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import ReactPlayer from 'react-player';
-import './Table.css';
+import { IMAGE_CONTENT_TYPE } from '../config';
+import '../style/Table.css';
 
-export default function Table({ items, label, activePhotoBar }) {
+export default function Table({ medias, label, contentType }) {
   function showPhotos() {
     return (
       <div className='image-wrapper'>
-        {items &&
-          items.map((img) => {
+        {medias &&
+          medias.map((img) => {
             return (
               <Link to={`/photo/${img.id}`} key={img.id}>
                 <img
@@ -26,15 +27,15 @@ export default function Table({ items, label, activePhotoBar }) {
   function showVideos() {
     return (
       <div className='player-wrapper'>
-        {items &&
-          items.map((video) => {
+        {medias &&
+          medias.map((video) => {
             return (
               <Link to={`/video/${video.id}`} key={video.id}>
                 <ReactPlayer
                   className='react-player'
                   key={video.id}
-                  url={video.video_files[1].link}
-                  playing
+                  url={video.video_files[2].link}
+                  playing={false}
                   muted
                 />
               </Link>
@@ -45,9 +46,9 @@ export default function Table({ items, label, activePhotoBar }) {
   }
   return (
     <>
-      <div className='items'>
-        <label>{label}</label>
-        {activePhotoBar ? showPhotos() : showVideos()}
+      <div className='medias'>
+        <label className='lable'>{label}</label>
+        {contentType === IMAGE_CONTENT_TYPE ? showPhotos() : showVideos()}
       </div>
     </>
   );
