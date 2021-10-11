@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import ReactPlayer from 'react-player';
 import { IMAGE_CONTENT_TYPE } from '../config';
 import '../style/Table.css';
 
@@ -26,17 +25,20 @@ export default function Table({ medias, label, contentType }) {
 
   function showVideos() {
     return (
-      <div className='player-wrapper'>
+      <div className='player-wrapper-grid'>
         {medias &&
           medias.map((video) => {
             return (
               <Link to={`/video/${video.id}`} key={video.id}>
-                <ReactPlayer
+                <video
                   className='react-player'
                   key={video.id}
-                  url={video.video_files[2].link}
-                  playing={false}
+                  src={video.video_files[2].link}
+                  poster={video.image}
+                  onMouseOver={(event) => event.target.play()}
+                  onMouseOut={(event) => event.target.pause()}
                   muted
+                  loop
                 />
               </Link>
             );

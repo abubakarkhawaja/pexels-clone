@@ -1,6 +1,5 @@
 import React from 'react';
 import { saveAs } from 'file-saver';
-import ReactPlayer from 'react-player';
 import { useMedia } from '../hooks/useMedia';
 import { BASE_VIDEO_URL } from '../config';
 import '../style/PhotoView.css';
@@ -50,14 +49,15 @@ function VideoView({ match }) {
       </div>
       <div className='player-wrapper'>
         {media && (
-          <ReactPlayer
+          <video
             className='react-player'
             key={media.id}
-            url={media.video_files[1].link}
-            playing
+            src={media.video_files[2].link}
+            poster={media.image}
+            onMouseOver={(event) => event.target.play()}
+            onMouseOut={(event) => event.target.pause()}
             muted
-            width='60%'
-            height='65%'
+            loop
           />
         )}
       </div>
