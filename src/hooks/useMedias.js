@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { fetchUrl } from '../utility';
 
-export const useMedias = ({ url, params = '', contentType = 'photos' }) => {
+export const useMedias = ({
+  url,
+  params = undefined,
+  contentType = 'photos',
+}) => {
   const [medias, setMedias] = useState([]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(false);
@@ -14,7 +18,9 @@ export const useMedias = ({ url, params = '', contentType = 'photos' }) => {
     (async function getData() {
       const response = await fetchUrl(
         url +
-          `?${params}page=${page}&per_page=${process.env.REACT_APP_PER_PAGE}`
+          `${params ?? '?'}page=${page}&per_page=${
+            process.env.REACT_APP_PER_PAGE
+          }`
       );
 
       if (response !== undefined) {
@@ -27,7 +33,7 @@ export const useMedias = ({ url, params = '', contentType = 'photos' }) => {
         setMedias(response[contentType]);
       }
     })();
-  }, [page, contentType, url]);
+  }, [page, contentType, url, params]);
 
   return { medias, loadMore, hasNextPage };
 };

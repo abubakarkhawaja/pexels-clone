@@ -14,7 +14,7 @@ export const useBanner = ({ url }) => {
         setImage(random_image.src);
       }
     })();
-  }, []);
+  }, [url]);
 
   return { image };
 };

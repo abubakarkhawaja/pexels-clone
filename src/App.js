@@ -23,12 +23,8 @@ function App() {
             <Banner />
             <Videos />
           </Route>
-          <Route path='/search' component={Search} />
-          <Route
-            path='/search/videos?query=:query'
-            component={SearchVideos}
-            exact
-          />
+          <Route path='/search' component={Search} exact />
+          <Route path='/search/videos' component={SearchVideos} exact />
           <Route path='/photo/:id' component={PhotoView} />
           <Route path='/video/:id' component={VideoView} />
         </Switch>
