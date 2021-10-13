@@ -12,7 +12,7 @@ function VideoView({ match }) {
   return (
     <>
       <div className='header'>
-        <div className='photographer'>{media && media.user.name}</div>
+        <div className='photographer'>{media.user.name}</div>
 
         <div className='interactions'>
           <button>
@@ -52,7 +52,7 @@ function VideoView({ match }) {
           <video
             className='react-player'
             key={media.id}
-            src={media.video_files[2].link}
+            src={media ?? media.video_files[2].link}
             poster={media.image}
             onMouseOver={(event) => event.target.play()}
             onMouseOut={(event) => event.target.pause()}

@@ -1,18 +1,13 @@
-import { useState, useEffect } from 'react';
-import { fetchUrl } from '../utility';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMediaAction } from '../redux/action/media';
 
 export const useMedia = ({ url }) => {
-  const [media, setMedia] = useState();
+  const dispatch = useDispatch();
+  const media = useSelector((state) => state.mediaReducer.media);
 
   useEffect(() => {
-    (async function getData() {
-      const response = await fetchUrl(url);
-
-      if (response !== undefined) {
-        setMedia(response);
-        return response;
-      }
-    })();
+    dispatch(getMediaAction(url));
   }, [url]);
 
   return { media };

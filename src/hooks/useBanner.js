@@ -1,20 +1,14 @@
-import { useState, useEffect } from 'react';
-import { fetchUrl } from '../utility';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBannerAction } from '../redux/action/media';
 
 export const useBanner = ({ url }) => {
-  const [image, setImage] = useState([]);
+  const dispatch = useDispatch();
+  const banner = useSelector((state) => state.mediaReducer.banner);
 
   useEffect(() => {
-    (async function getData() {
-      const fetchData = await fetchUrl(url);
-
-      if (fetchData !== undefined) {
-        const random_image =
-          fetchData.photos[Math.floor(Math.random() * fetchData.photos.length)];
-        setImage(random_image.src);
-      }
-    })();
+    dispatch(getBannerAction(url));
   }, [url]);
 
-  return { image };
+  return { banner };
 };
