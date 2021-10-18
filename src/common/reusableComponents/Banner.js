@@ -1,12 +1,9 @@
 import React from 'react';
-import { BASE_URL } from '../config';
 import { useBanner } from '../hooks/useBanner';
-import '../style/Banner.css';
+import '../../static/css/Banner.css';
 
 export default function Banner() {
-  const { banner } = useBanner({
-    url: `${BASE_URL}?page=2&per_page=${process.env.REACT_APP_PER_PAGE}`,
-  });
+  const { banner } = useBanner();
 
   return (
     <div className='banner'>

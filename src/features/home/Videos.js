@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_VIDEOS_URL, VIDEO_CONTENT_TYPE } from '../config';
-import { useMedias } from '../hooks/useMedias';
-import Table from './Table';
+import { VIDEO_CONTENT_TYPE } from '../../common/utils/config';
+import { useMedias } from '../../common/hooks/useMedias';
+import Table from '../../common/reusableComponents/Table';
 
 export default function Videos() {
   const { medias, loadMore, hasNextPage } = useMedias({
-    url: BASE_VIDEOS_URL,
+    url: process.env.REACT_APP_BASE_VIDEOS_URL,
     contentType: VIDEO_CONTENT_TYPE,
   });
 

@@ -5,12 +5,17 @@ import {
   GET_VIDEOS,
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
-} from '../types';
-import { getBanner, getMedia, getPhotos, getVideos } from '../../utility';
+} from './actionTypes';
+import {
+  getBanner,
+  getMedia,
+  getPhotos,
+  getVideos,
+} from '../common/utils/utility';
 
-export function getBannerAction(url) {
+export function getBannerAction() {
   return function (dispatch) {
-    getBanner(url).then((banner) => {
+    getBanner().then((banner) => {
       dispatch({ type: GET_BANNER, banner });
     });
   };
@@ -37,7 +42,7 @@ export function getPhotosAction(url, createNew) {
 
 export function getVideosAction(url, createNew) {
   return function (dispatch) {
-    if (!createNew) {
+    if (createNew) {
       dispatch({ type: EMPTY_VIDEOS });
     }
     getVideos(url).then((videos) => {

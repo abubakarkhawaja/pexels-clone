@@ -9,12 +9,11 @@ export const fetchUrl = (url) =>
     }
   });
 
-export async function getBanner(url) {
-  const fetchData = await fetchUrl(url);
+export async function getBanner() {
+  const fetchData = await fetchUrl(`${process.env.REACT_APP_BASE_URL}`);
   if (fetchData !== undefined) {
-    const random_image = await fetchData.photos[
-      Math.floor(Math.random() * fetchData.photos.length)
-    ];
+    const random_image =
+      fetchData.photos[Math.floor(Math.random() * fetchData.photos.length)];
     return random_image.src;
   }
   return {};
@@ -46,22 +45,3 @@ export async function getVideos(url) {
   }
   return [];
 }
-
-// (async function getData() {
-//   const response = await fetchUrl(
-//     url +
-//       `${params ?? '?'}page=${page}&per_page=${
-//         process.env.REACT_APP_PER_PAGE
-//       }`
-//   );
-
-//   if (response !== undefined) {
-//     setHasNextPage(response.next_page);
-
-//     if (medias.length !== 0) {
-//       setMedias([...medias, ...response[contentType]]);
-//       return response;
-//     }
-//     setMedias(response[contentType]);
-//   }
-// })();

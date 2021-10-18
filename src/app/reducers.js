@@ -5,7 +5,7 @@ import {
   GET_VIDEOS,
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
-} from '../types';
+} from './actionTypes';
 
 const initialState = {
   banner: {},
@@ -56,7 +56,7 @@ export default function mediaReducer(state = initialState, action) {
     case EMPTY_VIDEOS:
       return {
         ...state,
-        photos: [],
+        videos: [],
       };
     default:
       return state;

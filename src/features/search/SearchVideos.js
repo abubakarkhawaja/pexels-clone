@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_VIDEO_SEARCH_URL, VIDEO_CONTENT_TYPE } from '../config';
-import { useMedias } from '../hooks/useMedias';
-import Table from './Table';
+import { VIDEO_CONTENT_TYPE } from '../../common/utils/config';
+import { useMedias } from '../../common/hooks/useMedias';
+import Table from '../../common/reusableComponents/Table';
 
 export default function SearchVideos({ location }) {
   const { medias, loadMore, hasNextPage } = useMedias({
-    url: BASE_VIDEO_SEARCH_URL,
+    url: process.env.REACT_APP_BASE_VIDEO_SEARCH_URL,
     params: `${location.search}&`,
     contentType: VIDEO_CONTENT_TYPE,
   });
@@ -14,7 +14,10 @@ export default function SearchVideos({ location }) {
   return (
     <>
       <div className='tabs'>
-        <Link className='underlined-tabs__tab' to={`/search${location.search}`}>
+        <Link
+          className='underlined-tabs__tab'
+          to={`/search/images${location.search}`}
+        >
           Photos
         </Link>
         <Link className='underlined-tabs__tab active'>Videos</Link>

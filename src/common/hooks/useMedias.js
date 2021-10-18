@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPhotosAction, getVideosAction } from '../redux/action/media';
-import { IMAGE_CONTENT_TYPE } from '../config';
+import { getPhotosAction, getVideosAction } from '../../app/actions';
+import { IMAGE_CONTENT_TYPE, PER_PAGE } from '../utils/config';
 
 export const useMedias = ({
   url,
@@ -20,9 +20,8 @@ export const useMedias = ({
   }
 
   useEffect(() => {
-    const newUrl =
-      url +
-      `${params ?? '?'}page=${page}&per_page=${process.env.REACT_APP_PER_PAGE}`;
+    const newUrl = url + `${params ?? '?'}page=${page}&per_page=${PER_PAGE}`;
+    console.log(createNew);
     contentType === IMAGE_CONTENT_TYPE
       ? dispatch(getPhotosAction(newUrl, createNew))
       : dispatch(getVideosAction(newUrl, createNew));

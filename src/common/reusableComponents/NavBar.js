@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import Form from './Form';
-import '../style/NavBar.css';
+import '../../static/css/NavBar.css';
 
 function NavBar() {
   return (
     <nav className={`nav`}>
       <div className='nav__logo'>
-        <Link to='/' className='nav__logo__link'>
+        <Link to='/images' className='nav__logo__link'>
           <div className='nav__logo__img'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BASE_SEARCH_URL, IMAGE_CONTENT_TYPE } from '../config';
-import { useMedias } from '../hooks/useMedias';
-import Table from './Table';
+import { IMAGE_CONTENT_TYPE } from '../../common/utils/config';
+import { useMedias } from '../../common/hooks/useMedias';
+import Table from '../../common/reusableComponents/Table';
 
 export default function Search({ location }) {
   const { medias, loadMore, hasNextPage } = useMedias({
-    url: BASE_SEARCH_URL,
+    url: process.env.REACT_APP_BASE_SEARCH_URL,
     params: `${location.search}&`,
     contentType: IMAGE_CONTENT_TYPE,
   });
