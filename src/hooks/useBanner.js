@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBannerAction } from '../../app/actions';
+import { getBannerAction } from '../actions/actions';
 
 export const useBanner = () => {
   const dispatch = useDispatch();

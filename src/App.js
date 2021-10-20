@@ -4,15 +4,15 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Banner from '../common/reusableComponents/Banner';
-import Home from '../features/home/Home';
-import NavBar from '../common/reusableComponents/NavBar';
-import PhotoView from '../features/view/PhotoView';
-import Search from '../features/search/Search';
-import SearchVideos from '../features/search/SearchVideos';
-import Videos from '../features/home/Videos';
-import VideoView from '../features/view/VideoView';
-import '../static/css/App.css';
+import Banner from './components/Banner';
+import Home from './components/Home';
+import NavBar from './components/NavBar';
+import PhotoView from './components/PhotoView';
+import Search from './components/Search';
+import SearchVideos from './components/SearchVideos';
+import Videos from './components/Videos';
+import VideoView from './components/VideoView';
+import './App.css';
 
 function App() {
   return (

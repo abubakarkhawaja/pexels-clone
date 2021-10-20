@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { VIDEO_CONTENT_TYPE } from '../../common/utils/config';
-import { useMedias } from '../../common/hooks/useMedias';
-import Table from '../../common/reusableComponents/Table';
+import { VIDEO_CONTENT_TYPE } from '../config';
+import { useMedias } from '../hooks/useMedias';
+import Table from './Table';
 
 export default function Videos() {
   const { medias, loadMore, hasNextPage } = useMedias({
@@ -22,10 +22,13 @@ export default function Videos() {
       </div>
 
       <Table medias={medias} contentType={VIDEO_CONTENT_TYPE} label='Popular' />
-      {hasNextPage && (
-        <button className='load-more' type='button' onClick={loadMore}>
+
+      {medias.length !== 0 ? (
+        <button type='button' onClick={loadMore}>
           Load More
         </button>
+      ) : (
+        <div> No record found! </div>
       )}
     </>
   );

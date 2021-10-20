@@ -1,6 +1,6 @@
 import React from 'react';
 import { useBanner } from '../hooks/useBanner';
-import '../../static/css/Banner.css';
+import './Banner.css';
 
 export default function Banner() {
   const { banner } = useBanner();

@@ -1,8 +1,8 @@
 import React from 'react';
 import { saveAs } from 'file-saver';
-import { useMedia } from '../../common/hooks/useMedia';
-import { HEART_SVG, ADD_SVG } from '../../static/svg/logo';
-import '../../static/css/PhotoView.css';
+import { useMedia } from '../hooks/useMedia';
+import { HEART_SVG, ADD_SVG } from '../assets/logo';
+import './PhotoView.css';
 
 function VideoView({ match }) {
   const { media } = useMedia({

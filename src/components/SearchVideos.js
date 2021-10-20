@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { VIDEO_CONTENT_TYPE } from '../../common/utils/config';
-import { useMedias } from '../../common/hooks/useMedias';
-import Table from '../../common/reusableComponents/Table';
+import { VIDEO_CONTENT_TYPE } from '../config';
+import { useMedias } from '../hooks/useMedias';
+import Table from './Table';
 
 export default function SearchVideos({ location }) {
   const { medias, loadMore, hasNextPage } = useMedias({
@@ -28,10 +28,12 @@ export default function SearchVideos({ location }) {
         label='Search Results'
         contentType={VIDEO_CONTENT_TYPE}
       />
-      {hasNextPage && (
+      {medias.length !== 0 ? (
         <button type='button' onClick={loadMore}>
           Load More
         </button>
+      ) : (
+        <div> No record found! </div>
       )}
     </>
   );

@@ -11,7 +11,7 @@ import {
   getMedia,
   getPhotos,
   getVideos,
-} from '../common/utils/utility';
+} from '../services/requests';
 
 export function getBannerAction() {
   return function (dispatch) {

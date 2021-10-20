@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGE_CONTENT_TYPE } from '../../common/utils/config';
-import { useMedias } from '../../common/hooks/useMedias';
-import Table from '../../common/reusableComponents/Table';
+import { IMAGE_CONTENT_TYPE } from '../config';
+import { useMedias } from '../hooks/useMedias';
+import Table from './Table';
 
 export default function Home() {
-  console.log(process.env.REACT_APP_BASE_URL);
   const { medias, loadMore, hasNextPage } = useMedias({
     url: process.env.REACT_APP_BASE_URL,
     contentType: IMAGE_CONTENT_TYPE,
@@ -27,10 +26,12 @@ export default function Home() {
         contentType={IMAGE_CONTENT_TYPE}
         label='Trending'
       />
-      {hasNextPage && (
-        <button className='load-more' type='button' onClick={loadMore}>
+      {medias.length !== 0 ? (
+        <button type='button' onClick={loadMore}>
           Load More
         </button>
+      ) : (
+        <div> No record found! </div>
       )}
     </>
   );

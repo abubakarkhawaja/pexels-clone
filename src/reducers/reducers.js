@@ -5,7 +5,7 @@ import {
   GET_VIDEOS,
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
-} from './actionTypes';
+} from '../actions/actionTypes';
 
 const initialState = {
   banner: {},

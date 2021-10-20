@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { IMAGE_CONTENT_TYPE } from '../utils/config';
-import '../../static/css/Table.css';
+import { IMAGE_CONTENT_TYPE } from '../config';
+import './Table.css';
 
 export default function Table({ medias, label, contentType }) {
   function showPhotos() {

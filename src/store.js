@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import mediaReducer from './app/reducers';
+import mediaReducer from './reducers/reducers';
 
 const store = createStore(
   combineReducers({ mediaReducer }),

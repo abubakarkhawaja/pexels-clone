@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Form from './Form';
-import '../../static/css/NavBar.css';
+import './NavBar.css';
 
 function NavBar() {
   return (

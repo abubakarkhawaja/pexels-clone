@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { SEARCH_SVG } from '../../static/svg/logo';
-import '../../static/css/Form.css';
+import { SEARCH_SVG } from '../assets/logo';
+import './Form.css';
 
 function Form() {
   const input = React.createRef();
