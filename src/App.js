@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import Banner from './components/Banner';
 import Home from './components/Home';
+import Login from './components/Login';
 import NavBar from './components/NavBar';
 import PhotoView from './components/PhotoView';
 import Search from './components/Search';
@@ -20,6 +21,7 @@ function App() {
       <Router>
         <NavBar />
         <Switch>
+          <Route path='/login' component={Login} exact />
           <Route path='/' exact>
             <Redirect to='/images' />
           </Route>

@@ -1,0 +1,16 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+}
+.input {
+  outline: none;
+  border-radius: 5px;
+  font-weight: lighter;
+  font-size: 17px;
+}
+
+#login-button {
+  display: block;
+}

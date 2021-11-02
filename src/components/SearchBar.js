@@ -1,9 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { SEARCH_SVG } from '../assets/logo';
-import './Form.css';
+import './SearchBar.css';
 
-function Form() {
+function SearchBar() {
   const input = React.createRef();
   const history = useHistory();
 
@@ -35,4 +35,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default SearchBar;

@@ -5,13 +5,44 @@ import {
   GET_VIDEOS,
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
+  SET_USER,
 } from './actionTypes';
 import {
   getBanner,
   getMedia,
   getPhotos,
   getVideos,
+  getUsers,
 } from '../services/requests';
+
+export function loginUserAction(email, password) {
+  return function (dispatch) {
+    getUsers().then((users) => {
+      for (const user of users) {
+        if (user.email === email) {
+          dispatch({
+            type: SET_USER,
+            user: { ...user, isAuthenticated: true, error: false },
+          });
+          return;
+        }
+      }
+      dispatch({
+        type: SET_USER,
+        user: { isAuthenticated: false, error: true },
+      });
+    });
+  };
+}
+
+export function clearUserAction() {
+  return (dispatch) => {
+    dispatch({
+      type: SET_USER,
+      user: { isAuthenticated: false, error: false },
+    });
+  };
+}
 
 export function getBannerAction() {
   return function (dispatch) {

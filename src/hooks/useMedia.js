@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMediaAction } from '../actions/actions';
+import { getMediaAction, getUserAction } from '../actions/actions';
 
 export const useMedia = ({ url }) => {
   const dispatch = useDispatch();

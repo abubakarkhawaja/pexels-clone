@@ -9,6 +9,18 @@ export const fetchUrl = (url) =>
     }
   });
 
+export function getUsers() {
+  return fetch('https://jsonplaceholder.typicode.com/users')
+    .then((response) => {
+      return response.json().then((user) => {
+        return user;
+      });
+    })
+    .catch((err) => {
+      console.error(err.message());
+    });
+}
+
 export async function getBanner() {
   const fetchData = await fetchUrl(`${process.env.REACT_APP_BASE_URL}`);
   if (fetchData !== undefined) {
