@@ -13,6 +13,7 @@ import Search from './components/Search';
 import SearchVideos from './components/SearchVideos';
 import Videos from './components/Videos';
 import VideoView from './components/VideoView';
+import Profile from './components/Profile';
 import './App.css';
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route path='/search/videos' component={SearchVideos} exact />
           <Route path='/photo/:id' component={PhotoView} />
           <Route path='/video/:id' component={VideoView} />
+          <Route path='/profile' component={Profile} exact />
         </Switch>
       </Router>
     </div>

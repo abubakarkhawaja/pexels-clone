@@ -6,6 +6,10 @@ import {
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
   SET_USER,
+  ADD_PHOTO,
+  REMOVE_PHOTO,
+  ADD_VIDEO,
+  REMOVE_VIDEO,
 } from './actionTypes';
 import {
   getBanner,
@@ -14,6 +18,30 @@ import {
   getVideos,
   getUsers,
 } from '../services/requests';
+
+export function likePhoto(id) {
+  return function (dispatch) {
+    dispatch({ type: ADD_PHOTO, photo: id });
+  };
+}
+
+export function unlikePhoto(id) {
+  return function (dispatch) {
+    dispatch({ type: REMOVE_PHOTO, photo: id });
+  };
+}
+
+export function likeVideo(id) {
+  return function (dispatch) {
+    dispatch({ type: ADD_VIDEO, video: id });
+  };
+}
+
+export function unlikeVideo(id) {
+  return function (dispatch) {
+    dispatch({ type: REMOVE_VIDEO, video: id });
+  };
+}
 
 export function loginUserAction(email, password) {
   return function (dispatch) {

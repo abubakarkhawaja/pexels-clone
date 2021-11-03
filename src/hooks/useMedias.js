@@ -1,10 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getPhotosAction,
-  getUserAction,
-  getVideosAction,
-} from '../actions/actions';
+import { getPhotosAction, getVideosAction } from '../actions/actions';
 import { IMAGE_CONTENT_TYPE, PER_PAGE } from '../config';
 
 export const useMedias = ({

@@ -1,0 +1,13 @@
+.profile {
+  margin-top: 10px;
+}
+
+.profile__avatar {
+  width: 10rem;
+  border-radius: 100px;
+}
+
+.profile__text {
+  font-size: 19px;
+  font-weight: 450;
+}

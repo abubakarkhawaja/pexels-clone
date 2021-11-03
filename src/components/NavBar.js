@@ -43,7 +43,9 @@ function NavBar() {
       </div>
       {user?.isAuthenticated ? (
         <span>
-          <a className='username'>Hi {user?.username}!</a>
+          <Link className='username' to='/profile'>
+            Hi {user?.username}!
+          </Link>
           <a className='nav__content' onClick={logout}>
             Logout
           </a>
