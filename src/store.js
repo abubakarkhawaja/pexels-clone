@@ -1,19 +1,7 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { mediaReducer, userReducer } from './reducers/reducers';
-
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: 'user',
-};
-
-const persistedReducer = persistReducer(
-  persistConfig,
-  combineReducers({ mediaReducer, user: userReducer })
-);
+import { persistStore } from 'redux-persist';
+import persistedReducer from './reducers/rootReducers';
 
 const store = createStore(persistedReducer, applyMiddleware(thunk));
 

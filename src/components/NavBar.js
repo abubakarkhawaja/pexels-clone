@@ -10,6 +10,8 @@ function NavBar() {
     return state.user;
   });
 
+  const activeUser = user.users.byId[user.authenticatedUser];
+
   const logout = () => {
     dispatch(clearUserAction());
   };
@@ -44,7 +46,7 @@ function NavBar() {
       {user?.isAuthenticated ? (
         <span>
           <Link className='username' to='/profile'>
-            Hi {user?.username}!
+            Hi {activeUser?.name}!
           </Link>
           <a className='nav__content' onClick={logout}>
             Logout

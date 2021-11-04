@@ -4,7 +4,7 @@ import { getMediaAction, getUserAction } from '../actions/actions';
 
 export const useMedia = ({ url }) => {
   const dispatch = useDispatch();
-  const media = useSelector((state) => state.mediaReducer.media);
+  const media = useSelector((state) => state.media.media);
 
   useEffect(() => {
     dispatch(getMediaAction(url));

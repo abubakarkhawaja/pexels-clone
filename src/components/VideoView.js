@@ -11,6 +11,7 @@ function VideoView({ match }) {
     url: `${process.env.REACT_APP_BASE_VIDEO_URL}${match.params.id}`,
   });
   const user = useSelector((state) => state.user);
+  const activeUser = user.users.byId[user.authenticatedUser];
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -20,11 +21,11 @@ function VideoView({ match }) {
         pathname: '/login',
       });
     }
-    if (user.videos?.indexOf(media.id) !== -1) {
-      dispatch(unlikeVideo(media.id));
+    if (activeUser.videos?.indexOf(media.id) !== -1) {
+      dispatch(unlikeVideo(activeUser.id, media.id));
       return;
     }
-    dispatch(likeVideo(media.id));
+    dispatch(likeVideo(activeUser.id, media.id));
   }
 
   return (
@@ -42,15 +43,7 @@ function VideoView({ match }) {
             key={media.id}
             src={media.video_files[2].link}
             poster={media.image}
-            onMouseOver={(event) => {
-              var playPromise = event.target.play();
-
-              if (playPromise !== undefined) {
-                playPromise.then((_) => {}).catch((error) => {});
-              } else {
-                console.error('Cant play video');
-              }
-            }}
+            onMouseOver={(event) => event.target.play()}
             onMouseOut={(event) => event.target.pause()}
             muted
             loop

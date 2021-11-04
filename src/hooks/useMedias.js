@@ -9,7 +9,7 @@ export const useMedias = ({
   contentType = 'photos',
 }) => {
   const dispatch = useDispatch();
-  const medias = useSelector((state) => state.mediaReducer[contentType]);
+  const medias = useSelector((state) => state.media[contentType]);
   const [page, setPage] = useState(1);
   const [hasNextPage, setHasNextPage] = useState(true);
   const [createNew, setCreateNew] = useState(true);

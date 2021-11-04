@@ -10,7 +10,7 @@ export const fetchUrl = (url) =>
   });
 
 export function getUsers() {
-  return fetch('https://jsonplaceholder.typicode.com/users')
+  return fetch(process.env.REACT_APP_USERS_LIST)
     .then((response) => {
       return response.json().then((user) => {
         return user;

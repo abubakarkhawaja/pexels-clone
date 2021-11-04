@@ -11,6 +11,7 @@ function PhotoView({ match }) {
     url: `${process.env.REACT_APP_BASE_IMAGE_URL}${match.params.id}`,
   });
   const user = useSelector((state) => state.user);
+  const activeUser = user.users.byId[user.authenticatedUser];
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -20,11 +21,11 @@ function PhotoView({ match }) {
         pathname: '/login',
       });
     }
-    if (user.photos?.indexOf(media.id) !== -1) {
-      dispatch(unlikePhoto(media.id));
+    if (activeUser.photos?.indexOf(media.id) !== -1) {
+      dispatch(unlikePhoto(activeUser.id, media.id));
       return;
     }
-    dispatch(likePhoto(media.id));
+    dispatch(likePhoto(activeUser.id, media.id));
   }
 
   return (

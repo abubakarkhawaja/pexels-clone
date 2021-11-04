@@ -6,6 +6,7 @@ import {
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
   SET_USER,
+  LOGOUT_USER,
   ADD_PHOTO,
   REMOVE_PHOTO,
   ADD_VIDEO,
@@ -19,27 +20,27 @@ import {
   getUsers,
 } from '../services/requests';
 
-export function likePhoto(id) {
+export function likePhoto(userId, photoId) {
   return function (dispatch) {
-    dispatch({ type: ADD_PHOTO, photo: id });
+    dispatch({ type: ADD_PHOTO, userId: userId, photo: photoId });
   };
 }
 
-export function unlikePhoto(id) {
+export function unlikePhoto(userId, photoId) {
   return function (dispatch) {
-    dispatch({ type: REMOVE_PHOTO, photo: id });
+    dispatch({ type: REMOVE_PHOTO, userId: userId, photo: photoId });
   };
 }
 
-export function likeVideo(id) {
+export function likeVideo(userId, videoId) {
   return function (dispatch) {
-    dispatch({ type: ADD_VIDEO, video: id });
+    dispatch({ type: ADD_VIDEO, userId: userId, video: videoId });
   };
 }
 
-export function unlikeVideo(id) {
+export function unlikeVideo(userId, videoId) {
   return function (dispatch) {
-    dispatch({ type: REMOVE_VIDEO, video: id });
+    dispatch({ type: REMOVE_VIDEO, userId: userId, video: videoId });
   };
 }
 
@@ -50,14 +51,13 @@ export function loginUserAction(email, password) {
         if (user.email === email) {
           dispatch({
             type: SET_USER,
-            user: { ...user, isAuthenticated: true, error: false },
+            user: { ...user },
           });
           return;
         }
       }
       dispatch({
-        type: SET_USER,
-        user: { isAuthenticated: false, error: true },
+        type: LOGOUT_USER,
       });
     });
   };
@@ -66,8 +66,7 @@ export function loginUserAction(email, password) {
 export function clearUserAction() {
   return (dispatch) => {
     dispatch({
-      type: SET_USER,
-      user: { isAuthenticated: false, error: false },
+      type: LOGOUT_USER,
     });
   };
 }

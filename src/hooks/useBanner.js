@@ -4,7 +4,7 @@ import { getBannerAction } from '../actions/actions';
 
 export const useBanner = () => {
   const dispatch = useDispatch();
-  const banner = useSelector((state) => state.mediaReducer.banner);
+  const banner = useSelector((state) => state.media.banner);
 
   useEffect(() => {
     dispatch(getBannerAction());

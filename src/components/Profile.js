@@ -6,9 +6,9 @@ import './Profile.css';
 
 function Profile() {
   const user = useSelector((state) => state.user);
+  const activeUser = user.users.byId[user.authenticatedUser];
   const [showPhotos, setShowPhotos] = useState(true);
   const history = useHistory();
-
   if (!user.isAuthenticated) {
     history.replace({
       pathname: '/login',
@@ -18,7 +18,9 @@ function Profile() {
   return (
     <div className='profile'>
       <img className='profile__avatar' src={avatar} />
-      <p className='profile__text'>Hi {user.name}!</p>
+      <p className='profile__text'>
+        Hi {user.isAuthenticated ? activeUser.name : ''}!
+      </p>
       <div className='tabs'>
         <a className='underlined-tabs__tab active'>Liked</a>
       </div>
@@ -36,9 +38,12 @@ function Profile() {
           Videos
         </a>
       </div>
+
       {showPhotos
-        ? user?.photos.map((id) => <p key={id}>{id}</p>)
-        : user?.videos.map((id) => <p key={id}>{id}</p>)}
+        ? activeUser?.photos &&
+          activeUser?.photos.map((id) => <p key={id}>{id}</p>)
+        : activeUser?.videos &&
+          activeUser?.videos.map((id) => <p key={id}>{id}</p>)}
     </div>
   );
 }
