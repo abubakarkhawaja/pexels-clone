@@ -47,7 +47,6 @@ export default function userReducer(state = userState, action) {
         authenticatedUser: action.user.id,
       };
     case LOGOUT_USER:
-      console.log(state);
       return {
         ...state,
         isAuthenticated: false,
@@ -60,6 +59,7 @@ export default function userReducer(state = userState, action) {
         ...{
           users: {
             byId: {
+              ...state.users.byId,
               [action.userId]: {
                 ...state.users.byId[action.userId],
                 photos: [
@@ -77,6 +77,7 @@ export default function userReducer(state = userState, action) {
         ...{
           users: {
             byId: {
+              ...state.users.byId,
               [action.userId]: {
                 ...state.users.byId[action.userId],
                 photos: [

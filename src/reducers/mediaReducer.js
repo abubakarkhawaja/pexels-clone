@@ -1,6 +1,7 @@
 import {
   GET_BANNER,
   GET_MEDIA,
+  GET_PROFILE_MEDIAS,
   GET_PHOTOS,
   GET_VIDEOS,
   EMPTY_PHOTOS,
@@ -10,6 +11,7 @@ import {
 const mediaState = {
   banner: {},
   media: { src: { landscape: '' }, user: { name: '' } },
+  profileMedias: { photos: [], videos: [] },
   photos: [],
   videos: [],
 };
@@ -25,6 +27,12 @@ export default function mediaReducer(state = mediaState, action) {
       return {
         ...state,
         media: action.media,
+      };
+
+    case GET_PROFILE_MEDIAS:
+      return {
+        ...state,
+        profileMedias: { ...state.profileMedias, ...action.medias },
       };
     case GET_PHOTOS:
       if (state.photos.length !== 0) {

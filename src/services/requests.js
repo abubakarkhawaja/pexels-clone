@@ -40,6 +40,18 @@ export async function getMedia(url) {
   return [];
 }
 
+export async function getProfileMedias(urls, contentType) {
+  let responses = { [contentType]: [] };
+  for (let url of urls) {
+    const response = await fetchUrl(url);
+
+    if (response !== undefined) {
+      responses[contentType].push(response);
+    }
+  }
+  return responses;
+}
+
 export async function getPhotos(url) {
   const response = await fetchUrl(url);
 
