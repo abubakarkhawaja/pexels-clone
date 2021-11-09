@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { signupUserAction } from '../actions/userActions';
-import './login.css';
+import './Login.css';
 
 export default function Signup() {
   const [name, setName] = useState('');

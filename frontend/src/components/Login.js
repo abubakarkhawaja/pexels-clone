@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import { loginUserAction } from '../actions/userActions';
-import './login.css';
+import './Login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
