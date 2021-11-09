@@ -7,7 +7,7 @@ from . import views
 app_name = "user"
 
 router = routers.DefaultRouter()
-router.register(r"signup", views.UserViewset, "signup")
+router.register(r"users", views.UserViewset, "signup")
 router.register(r"photos", views.PhotosViewset, "photos")
 router.register(r"videos", views.VideosViewset, "videos")
 

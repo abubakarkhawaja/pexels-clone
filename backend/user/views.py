@@ -6,10 +6,15 @@ from .models import User, Photos, Videos
 from .serializers import UserSerializer, PhotosSerializer, VideosSerializer
 
 
-class UserViewset(mixins.CreateModelMixin,
-                  viewsets.GenericViewSet):
+class UserViewset(viewsets.ModelViewSet):
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(email=self.request.user)
+        return queryset
 
     def create(self, request, *args, **kwargs):
         data = {}
