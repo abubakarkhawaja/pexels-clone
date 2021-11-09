@@ -1,31 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGE_CONTENT_TYPE } from '../config';
+import { VIDEO_CONTENT_TYPE } from '../config';
 import { useMedias } from '../hooks/useMedias';
 import Table from './Table';
 
-export default function Home() {
+export default function Videos() {
   const { medias, loadMore, hasNextPage } = useMedias({
-    url: process.env.REACT_APP_BASE_URL,
-    contentType: IMAGE_CONTENT_TYPE,
+    url: process.env.REACT_APP_BASE_VIDEOS_URL,
+    contentType: VIDEO_CONTENT_TYPE,
   });
 
   return (
     <>
       <div className='tabs'>
-        <Link className='underlined-tabs__tab active' to='/images'>
+        <Link className='underlined-tabs__tab' to='/'>
           Photos
         </Link>
-        <Link className='underlined-tabs__tab' to='/videos'>
+        <Link className='underlined-tabs__tab active' to='/videos'>
           Videos
         </Link>
       </div>
 
-      <Table
-        medias={medias}
-        contentType={IMAGE_CONTENT_TYPE}
-        label='Trending'
-      />
+      <Table medias={medias} contentType={VIDEO_CONTENT_TYPE} label='Popular' />
+
       {medias.length !== 0 ? (
         <button type='button' onClick={loadMore}>
           Load More

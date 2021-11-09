@@ -1,64 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { saveAs } from 'file-saver';
-
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import { useMedia } from '../hooks/useMedia';
+import { likePhoto, unlikePhoto } from '../actions/actions';
+import { interactions } from '../services/utils';
 import './PhotoView.css';
 
 function PhotoView({ match }) {
-  const [photo, setPhoto] = useState({ src: '' });
+  const { media } = useMedia({
+    url: `${process.env.REACT_APP_BASE_IMAGE_URL}${match.params.id}`,
+  });
+  const user = useSelector((state) => state.user);
+  const activeUser = user.users.byId[user.authenticatedUser];
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  async function getData() {
-    const response = await fetch(
-      `https://api.pexels.com/v1/photos/${match.params.id}`,
-      {
-        headers: new Headers({
-          Authorization: process.env.REACT_APP_API_KEY,
-        }),
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error component: Photo View');
-        }
-      })
-      .catch((error) => {
-        console.error(error);
+  function likeEvent() {
+    if (!user.isAuthenticated) {
+      history.replace({
+        pathname: '/login',
       });
-    console.log('i ran');
-    if (response !== undefined) {
-      setPhoto(response);
-      return response;
     }
+    if (activeUser.photos?.indexOf(media.id) !== -1) {
+      dispatch(unlikePhoto(activeUser.id, media.id));
+      return;
+    }
+    dispatch(likePhoto(activeUser.id, media.id));
   }
 
   return (
     <>
       <div className='header'>
-        <div className='photographer'>{photo.photographer}</div>
+        <div className='photographer'>{media && media.photographer}</div>
 
-        <div className='interactions'>
-          <button>Like</button>
-          <button>Add</button>
-
-          <button
-            onClick={() => {
-              saveAs(photo.src.original, photo.id);
-            }}
-          >
-            Download
-          </button>
-        </div>
+        {interactions(likeEvent, media, media.src)}
       </div>
-      <img
-        className='image-view'
-        src={photo.src.landscape}
-        alt={photo.id}
-      ></img>
+
+      {media && (
+        <img
+          className='image-view'
+          src={media?.src?.landscape}
+          alt={media.id}
+        />
+      )}
     </>
   );
 }

@@ -41,3 +41,11 @@
 .nav__logo__text {
   margin: 0 1rem;
 }
+
+span {
+  display: inline-flex;
+}
+
+a {
+  margin-inline: 10px;
+}
