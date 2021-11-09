@@ -1,0 +1,13 @@
+* {
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 700;
+}

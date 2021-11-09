@@ -1,0 +1,36 @@
+.banner {
+  position: relative;
+  display: flex;
+  max-height: 500px;
+  min-height: 380px;
+  z-index: 1;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner__image {
+  object-fit: cover;
+  width: 100%;
+  height: 500px;
+}
+
+section {
+  display: inline-block;
+}
+
+.banner__content {
+  max-width: 650px;
+  width: 100%;
+  z-index: 3;
+  position: absolute;
+}
+
+.banner__title {
+  display: block;
+  font-size: 36px;
+  line-height: 48px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
