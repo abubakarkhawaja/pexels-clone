@@ -1,25 +1,12 @@
-import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import SearchBar from './SearchBar';
-import { clearUserAction } from '../actions/actions';
+import Form from './Form';
 import './NavBar.css';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => {
-    return state.user;
-  });
-
-  const activeUser = user.users.byId[user.authenticatedUser];
-
-  const logout = () => {
-    dispatch(clearUserAction());
-  };
-
   return (
     <nav className={`nav`}>
       <div className='nav__logo'>
-        <Link to='/images' className='nav__logo__link'>
+        <Link to='/' className='nav__logo__link'>
           <div className='nav__logo__img'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
@@ -41,22 +28,10 @@ function NavBar() {
             Pexels
           </div>
         </Link>
-        <SearchBar />
+        <Form />
       </div>
-      {user?.isAuthenticated ? (
-        <span>
-          <Link className='username' to='/profile'>
-            Hi {activeUser?.name}!
-          </Link>
-          <a className='nav__content' onClick={logout}>
-            Logout
-          </a>
-        </span>
-      ) : (
-        <Link className='nav__content' to='/login'>
-          Login
-        </Link>
-      )}
+
+      <p className='nav__content'>Login</p>
     </nav>
   );
 }

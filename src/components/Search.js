@@ -1,39 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { IMAGE_CONTENT_TYPE } from '../config';
-import { useMedias } from '../hooks/useMedias';
+import React, { useState, useEffect } from 'react';
+import { useFetch } from '../useFetch';
+import { BASE_SEARCH_URL } from '../config';
 import Table from './Table';
 
-export default function Search({ location }) {
-  const { medias, loadMore, hasNextPage } = useMedias({
-    url: process.env.REACT_APP_BASE_SEARCH_URL,
-    params: `${location.search}&`,
-    contentType: IMAGE_CONTENT_TYPE,
+export default function Search({ match }) {
+ const { items } = useFetch({
+    url: `${BASE_SEARCH_URL}?query=${match.params.query}&page=1&per_page=${process.env.REACT_APP_PER_PAGE}`,
   });
+  const [hasNextPage, setHasNextPage] = useState(false);
+  let [page, setPage] = useState(1);
+  let [perPage, setPerPage] = useState(
+    parseInt(process.env.REACT_APP_PER_PAGE)
+  );
+  
+//   if (searchResponse !== undefined) {
+//       setHasNextPage(searchResponse.next_page);
+//       if (items.length !== 0) {
+//         setItems([...items, ...searchResponse.photos]);
+//         return searchResponse;
+//       }
+//       setItems(searchResponse.photos);
+//    }
+
+  function loadMore() {
+    setPage(page + 1);
+  }
 
   return (
     <>
-      <div className='tabs'>
-        <Link className='underlined-tabs__tab active'>Photos</Link>
-        <Link
-          className='underlined-tabs__tab'
-          to={`/search/videos${location.search}`}
-        >
-          Videos
-        </Link>
-      </div>
-
-      <Table
-        medias={medias}
-        label='Search Results'
-        contentType={IMAGE_CONTENT_TYPE}
-      />
-      {medias.length !== 0 ? (
+      <Table items={items} label='Search Results' />
+      {hasNextPage && (
         <button type='button' onClick={loadMore}>
           Load More
         </button>
-      ) : (
-        <div> No record found! </div>
       )}
     </>
   );
