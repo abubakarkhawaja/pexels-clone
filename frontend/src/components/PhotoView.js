@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useMedia } from '../hooks/useMedia';
 import { likePhoto, unlikePhoto } from '../actions/userActions';
-import { interactions } from '../services/utils';
+import { saveAs } from 'file-saver';
+import { HEART_SVG } from '../assets/logo';
 import './PhotoView.css';
 
 function PhotoView({ match }) {
@@ -33,7 +34,20 @@ function PhotoView({ match }) {
       <div className='header'>
         <div className='photographer'>{media && media.photographer}</div>
 
-        {interactions(likeEvent, media, media.src)}
+        <div className='interactions'>
+          <button onClick={likeEvent}>
+            {HEART_SVG}
+            Like
+          </button>
+
+          <button
+            onClick={() => {
+              saveAs(media.src.original, media.id);
+            }}
+          >
+            Download
+          </button>
+        </div>
       </div>
 
       {media && (

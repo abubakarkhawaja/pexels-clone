@@ -13,7 +13,7 @@ export default function Table({ medias, label, contentType }) {
                 <img
                   className='image'
                   key={img.id}
-                  src={img.src.portrait}
+                  src={img.src?.portrait}
                   alt={img.id}
                 />
               </Link>

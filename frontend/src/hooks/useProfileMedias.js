@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProfileMediasAction } from '../actions/mediaActions';
+import { getProfileMediasRecordAction } from '../actions/mediaActions';
 
-export const useProfileMedias = ({ mediaIds, contentType }) => {
+export const useProfileMedias = ({ token, contentType }) => {
   const dispatch = useDispatch();
   const medias = useSelector((state) => state.media.profileMedias[contentType]);
 
   useEffect(() => {
-    if (mediaIds) dispatch(getProfileMediasAction(mediaIds, contentType));
+    if (medias) dispatch(getProfileMediasRecordAction(token));
   }, []);
 
   return medias;

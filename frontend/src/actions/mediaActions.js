@@ -14,6 +14,7 @@ import {
   getProfileMedias,
   getPhotos,
   getVideos,
+  fetchBackendUrl,
 } from '../services/requests';
 
 export function getBannerAction() {
@@ -45,7 +46,32 @@ export function getProfileMediasAction(mediaIds, contentType) {
     }
 
     getProfileMedias(urls, contentType).then((medias) => {
-      dispatch({ type: GET_PROFILE_MEDIAS, medias });
+      dispatch({ type: GET_PROFILE_MEDIAS, medias: { ...medias } });
+    });
+  };
+}
+
+export function getProfileMediasRecordAction(token) {
+  return function (dispatch) {
+    const photoUrl = process.env.REACT_APP_PHOTOS_URL;
+    const videoUrl = process.env.REACT_APP_VIDEOS_URL;
+
+    fetchBackendUrl(photoUrl, token).then((medias) => {
+      const photos = [];
+      for (const media of medias) {
+        photos.push(media.photoId);
+      }
+
+      dispatch(getProfileMediasAction(photos, 'photos'));
+    });
+
+    fetchBackendUrl(videoUrl, token).then((medias) => {
+      const videos = [];
+      for (const media of medias) {
+        videos.push(media.videoId);
+      }
+
+      dispatch(getProfileMediasAction(videos, 'videos'));
     });
   };
 }

@@ -18,16 +18,20 @@ import {
   removeVideo,
 } from '../services/requests';
 
+import { getProfileMediasRecordAction } from './mediaActions';
+
 export function loginUserAction(email, password) {
   return function (dispatch) {
-    getToken(email, password)
+    return getToken(email, password)
       .then((token) => {
         if (token === undefined) throw Error('Authentication Failed');
         dispatch(getUserAction(token));
+        return token;
       })
       .catch((err) => {
         console.error(err.message);
         dispatch(authFailAction());
+        return false;
       });
   };
 }
@@ -54,6 +58,7 @@ export function getUserAction(token) {
         user: { ...user, token },
       });
     });
+    dispatch(getProfileMediasRecordAction(token));
   };
 }
 export function clearUserAction() {

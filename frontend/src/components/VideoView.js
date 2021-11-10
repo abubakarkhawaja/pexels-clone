@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { useMedia } from '../hooks/useMedia';
 import { likeVideo, unlikeVideo } from '../actions/userActions';
-import { interactions } from '../services/utils';
+import { saveAs } from 'file-saver';
+import { HEART_SVG } from '../assets/logo';
 import './PhotoView.css';
 
 function VideoView({ match }) {
@@ -33,7 +34,20 @@ function VideoView({ match }) {
       <div className='header'>
         <div className='photographer'>{media?.user?.name}</div>
 
-        {interactions(likeEvent, media, media?.video_files)}
+        <div className='interactions'>
+          <button onClick={likeEvent}>
+            {HEART_SVG}
+            Like
+          </button>
+
+          <button
+            onClick={() => {
+              saveAs(media.video_files[2].link, media.id);
+            }}
+          >
+            Download
+          </button>
+        </div>
       </div>
 
       <div className='player-wrapper'>

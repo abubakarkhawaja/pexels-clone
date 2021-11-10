@@ -9,6 +9,17 @@ export const fetchUrl = (url) =>
     }
   });
 
+export const fetchBackendUrl = (url, token) =>
+  fetch(url, {
+    headers: new Headers({
+      Authorization: `Token ${token}`,
+    }),
+  }).then((response) => {
+    if (response.ok) {
+      return response.json();
+    }
+  });
+
 export function createUser(signupInfo) {
   return fetch(process.env.REACT_APP_BACKEND_URL + '/users/', {
     method: 'POST',

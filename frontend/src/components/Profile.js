@@ -11,11 +11,11 @@ function Profile() {
   const user = useSelector((state) => state.user);
   const activeUser = user.users.byId[user.authenticatedUser];
   const photos = useProfileMedias({
-    mediaIds: activeUser?.photos,
+    token: activeUser.token,
     contentType: IMAGE_CONTENT_TYPE,
   });
   const videos = useProfileMedias({
-    mediaIds: activeUser?.videos,
+    token: activeUser.token,
     contentType: VIDEO_CONTENT_TYPE,
   });
   const [showPhotos, setShowPhotos] = useState(true);
@@ -27,8 +27,6 @@ function Profile() {
     });
   }
 
-  console.log(activeUser?.photos, 'photos');
-  console.log(activeUser?.videos, 'videos');
   return (
     <div className='profile'>
       <img className='profile__avatar' src={avatar} />
@@ -54,12 +52,8 @@ function Profile() {
       </div>
 
       {showPhotos
-        ? activeUser?.photos && (
-            <Table medias={photos} contentType={IMAGE_CONTENT_TYPE} />
-          )
-        : activeUser?.videos && (
-            <Table medias={videos} contentType={VIDEO_CONTENT_TYPE} />
-          )}
+        ? photos && <Table medias={photos} contentType={IMAGE_CONTENT_TYPE} />
+        : videos && <Table medias={videos} contentType={VIDEO_CONTENT_TYPE} />}
     </div>
   );
 }
