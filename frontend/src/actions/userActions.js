@@ -57,8 +57,9 @@ export function getUserAction(token) {
         type: SET_USER,
         user: { ...user, token },
       });
+
+      dispatch(getProfileMediasRecordAction(token, user.id));
     });
-    dispatch(getProfileMediasRecordAction(token));
   };
 }
 export function clearUserAction() {

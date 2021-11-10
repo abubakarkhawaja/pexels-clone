@@ -2,10 +2,12 @@ import {
   GET_BANNER,
   GET_MEDIA,
   GET_PROFILE_MEDIAS,
+  ADD_PHOTO,
   GET_PHOTOS,
   GET_VIDEOS,
   EMPTY_PHOTOS,
   EMPTY_VIDEOS,
+  ADD_VIDEO,
 } from './actionTypes';
 
 import {
@@ -33,25 +35,33 @@ export function getMediaAction(url) {
   };
 }
 
-export function getProfileMediasAction(mediaIds, contentType) {
+export function getProfileMediasAction(mediaIds, contentType, id) {
   return function (dispatch) {
     const urls = [];
+    const content = contentType === 'photos' ? 'photo' : 'video';
     const baseUrl =
       contentType === 'photos'
         ? process.env.REACT_APP_BASE_IMAGE_URL
         : process.env.REACT_APP_BASE_VIDEO_URL;
 
-    for (var id of mediaIds) {
+    for (const id of mediaIds) {
       urls.push(baseUrl + id);
     }
-
     getProfileMedias(urls, contentType).then((medias) => {
       dispatch({ type: GET_PROFILE_MEDIAS, medias: { ...medias } });
+      for (const media of medias[contentType]) {
+        console.log(media, contentType);
+        dispatch({
+          type: contentType === 'photos' ? ADD_PHOTO : ADD_VIDEO,
+          userId: id,
+          [content]: media.id,
+        });
+      }
     });
   };
 }
 
-export function getProfileMediasRecordAction(token) {
+export function getProfileMediasRecordAction(token, id) {
   return function (dispatch) {
     const photoUrl = process.env.REACT_APP_PHOTOS_URL;
     const videoUrl = process.env.REACT_APP_VIDEOS_URL;
@@ -62,7 +72,7 @@ export function getProfileMediasRecordAction(token) {
         photos.push(media.photoId);
       }
 
-      dispatch(getProfileMediasAction(photos, 'photos'));
+      dispatch(getProfileMediasAction(photos, 'photos', id));
     });
 
     fetchBackendUrl(videoUrl, token).then((medias) => {
@@ -71,7 +81,7 @@ export function getProfileMediasRecordAction(token) {
         videos.push(media.videoId);
       }
 
-      dispatch(getProfileMediasAction(videos, 'videos'));
+      dispatch(getProfileMediasAction(videos, 'videos', id));
     });
   };
 }

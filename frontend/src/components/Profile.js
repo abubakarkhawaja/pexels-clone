@@ -11,12 +11,14 @@ function Profile() {
   const user = useSelector((state) => state.user);
   const activeUser = user.users.byId[user.authenticatedUser];
   const photos = useProfileMedias({
-    token: activeUser.token,
+    token: activeUser?.token,
     contentType: IMAGE_CONTENT_TYPE,
+    id: activeUser.id,
   });
   const videos = useProfileMedias({
-    token: activeUser.token,
+    token: activeUser?.token,
     contentType: VIDEO_CONTENT_TYPE,
+    id: activeUser.id,
   });
   const [showPhotos, setShowPhotos] = useState(true);
   const history = useHistory();
