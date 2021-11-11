@@ -65,8 +65,6 @@ export default function userReducer(state = userState, action) {
       };
 
     case ADD_PHOTO:
-      console.log(state.users.byId[action.userId]);
-      console.log(action);
       return {
         ...state,
         ...{

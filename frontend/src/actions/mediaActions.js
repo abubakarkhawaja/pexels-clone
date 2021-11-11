@@ -50,11 +50,10 @@ export function getProfileMediasAction(mediaIds, contentType, id) {
     getProfileMedias(urls, contentType).then((medias) => {
       dispatch({ type: GET_PROFILE_MEDIAS, medias: { ...medias } });
       for (const media of medias[contentType]) {
-        console.log(media, contentType);
         dispatch({
           type: contentType === 'photos' ? ADD_PHOTO : ADD_VIDEO,
           userId: id,
-          [content]: media.id,
+          [content]: media,
         });
       }
     });

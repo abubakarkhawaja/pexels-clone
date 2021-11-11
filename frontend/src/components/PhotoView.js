@@ -22,7 +22,7 @@ function PhotoView({ match }) {
         pathname: '/login',
       });
     }
-    console.log(activeUser);
+
     if (activeUser.photos?.indexOf(media.id) !== -1) {
       dispatch(unlikePhoto(activeUser, media.id));
       return;
