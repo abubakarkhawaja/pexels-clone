@@ -1,0 +1,13 @@
+docker build --tag [TAG] [PATH containing docker file]
+docker build --tag pexel-react .
+
+docker run [TAG]
+docker run -d -p 3000:3000 --name pexel pexel-react 
+docker run -d -p [MyPort:DockerPort] --name [NAME] [TAG]
+-p = publish 
+-d = detach mode
+
+docker-compose build
+docker-compose run app
+docker-compose run [service name in docker-compose.yml]
+docker-compose up
