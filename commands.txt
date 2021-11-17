@@ -11,3 +11,7 @@ docker-compose build
 docker-compose run app
 docker-compose run [service name in docker-compose.yml]
 docker-compose up
+
+### DJANGO
+docker build --tag django .                           
+docker run -p 8000:8000 --name pexels-django django   
