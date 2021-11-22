@@ -1,0 +1,12 @@
+version: '3'
+services:
+  backend:
+    build:
+      
+    volumes:
+      - .:/backend
+    ports:
+      - 3000:3000
+    image: backend:pexel-django
+    container_name: pexel-django-container
+    command: python manage.py runserver 0.0.0.0:8000

@@ -15,3 +15,9 @@ docker-compose up
 ### DJANGO
 docker build --tag django .                           
 docker run -p 8000:8000 --name pexels-django django   
+
+###
+
+docker login
+docker tag firstimage YOUR_DOCKERHUB_NAME/firstimage
+docker push YOUR_DOCKERHUB_NAME/firstimage
