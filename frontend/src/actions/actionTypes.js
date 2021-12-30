@@ -1,0 +1,14 @@
+export const ADD_PHOTO = 'ADD_PHOTO';
+export const ADD_VIDEO = 'ADD_VIDEO';
+export const AUTH_FAIL = 'AUTH_FAIL';
+export const EMPTY_PHOTOS = 'EMPTY_PHOTOS';
+export const EMPTY_VIDEOS = 'EMPTY_VIDEOS';
+export const GET_BANNER = 'GET_BANNER';
+export const GET_MEDIA = 'GET_MEDIA';
+export const GET_PROFILE_MEDIAS = 'GET_PROFILE_MEDIAS';
+export const GET_PHOTOS = 'GET_PHOTOS';
+export const GET_VIDEOS = 'GET_VIDEOS';
+export const LOGOUT_USER = 'LOGOUT_USER';
+export const REMOVE_PHOTO = 'REMOVE_PHOTO';
+export const REMOVE_VIDEO = 'REMOVE_VIDEO';
+export const SET_USER = 'SET_USER';
